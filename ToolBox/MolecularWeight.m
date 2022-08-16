@@ -1,3 +1,12 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SPECTRUM-XFMS: A MATLAB Toolbox to Analyze X-ray Footprinting Mass Spectrometry Data %
+%                                    Version 1.0.0                                     %
+%        Copyright (c) Biomedical Informatics & Engineering Research Laboratory,       %
+%           Lahore University of Management Sciences Lahore (LUMS), Pakistan.          %
+%                           (http://biolabs.lums.edu.pk/BIRL)                          %
+%                                (safee.ullah@gmail.com)                               %
+%                            Last Modified on: 26-July-2022                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [Oxidize_mz, Unoxidize_mz, Theoretical_peptide_weight] = MolecularWeight( Sequence )
 % This function calculates the monoisotopic mass of peptide and compute the
 % oxidized AND UNOXIDIZED M/Z
@@ -22,77 +31,72 @@ for alongsequencesize = 1:sizeofsequence
         end
     end
 end
-
-
 Theoretical_peptide_weight = Theoretical_peptide_weight + 18.01524;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%  unoxidize m/z  WITH CHARGE STATE 2 nd 3
-i=1
+IndexTable=1;
 Unoxidize= (Theoretical_peptide_weight + 2)/2;
-Unoxidize_mz1(i)= string(floor(Unoxidize));
+Unoxidize_mz1(IndexTable)= string(floor(Unoxidize));
 Unoxidize= (Theoretical_peptide_weight + 3)/3;
-i=i+1;
-Unoxidize_mz1(i) = string(floor(Unoxidize))
+IndexTable=IndexTable+1;
+Unoxidize_mz1(IndexTable) = string(floor(Unoxidize));
 Unoxidize= (Theoretical_peptide_weight + 4)/4;
-i=i+1;
-Unoxidize_mz1(i) = string(floor(Unoxidize))
+IndexTable=IndexTable+1;
+Unoxidize_mz1(IndexTable) = string(floor(Unoxidize));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%  oxidize m/z 
 %%%%%%%%%%% OXIDATION NUMBER = 2,3,4 and charge state = 2 3
-i=1
+IndexTable=1;
 oxidize= (Theoretical_peptide_weight + 2+16)/2;
-Oxidize_mz1(i)= string(floor(oxidize));
+Oxidize_mz1(IndexTable)= string(floor(oxidize));
 oxidize= (Theoretical_peptide_weight + 3+16)/3;
-i=i+1;
-Oxidize_mz1(i) = string(floor(oxidize))
+IndexTable=IndexTable+1;
+Oxidize_mz1(IndexTable) = string(floor(oxidize));
 oxidize= (Theoretical_peptide_weight + 4+16)/4;
-i=i+1;
-Oxidize_mz1(i) = string(floor(oxidize))
-
-
+IndexTable=IndexTable+1;
+Oxidize_mz1(IndexTable) = string(floor(oxidize));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 oxidize= (Theoretical_peptide_weight + 2+32)/2;
-i=i+1;
-Oxidize_mz1(i) = string(floor(oxidize));
+IndexTable=IndexTable+1;
+Oxidize_mz1(IndexTable) = string(floor(oxidize));
 oxidize= (Theoretical_peptide_weight + 3+32)/3;
-i=i+1;
-Oxidize_mz1(i) = string(floor(oxidize));
+IndexTable=IndexTable+1;
+Oxidize_mz1(IndexTable) = string(floor(oxidize));
 oxidize= (Theoretical_peptide_weight + 4+32)/4;
-i=i+1;
-Oxidize_mz1(i) = string(floor(oxidize))
-
+IndexTable=IndexTable+1;
+Oxidize_mz1(IndexTable) = string(floor(oxidize));
 oxidize= (Theoretical_peptide_weight + 2+48)/2;
-i=i+1;
-Oxidize_mz1(i)= string(floor(oxidize));
+IndexTable=IndexTable+1;
+Oxidize_mz1(IndexTable)= string(floor(oxidize));
 oxidize= (Theoretical_peptide_weight + 3+48)/3;
-i=i+1;
-Oxidize_mz1(i) = string(floor(oxidize))
+IndexTable=IndexTable+1;
+Oxidize_mz1(IndexTable) = string(floor(oxidize));
 oxidize= (Theoretical_peptide_weight + 4+48)/4;
-i=i+1;
-Oxidize_mz1(i) = string(floor(oxidize))
+IndexTable=IndexTable+1;
+Oxidize_mz1(IndexTable) = string(floor(oxidize));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%Tolernce for Molecular  weights
+IndexTabforTolernce=1;
+tol= 1;
 
-j=1
-tol= 1
-
-for i= 1:length(Oxidize_mz1)
-    Oxidize_mz(j)= str2double(Oxidize_mz1(i))+tol
-    j=j+1
-     Oxidize_mz(j)=  str2double(Oxidize_mz1(i))-tol
-     j=j+1
-     Oxidize_mz(j)= Oxidize_mz1(i)
-     j=j+1
+for IndexTable= 1:length(Oxidize_mz1)
+    Oxidize_mz(IndexTabforTolernce)= str2double(Oxidize_mz1(IndexTable))+tol;
+    IndexTabforTolernce=IndexTabforTolernce+1;
+     Oxidize_mz(IndexTabforTolernce)=  str2double(Oxidize_mz1(IndexTable))-tol;
+     IndexTabforTolernce=IndexTabforTolernce+1;
+     Oxidize_mz(IndexTabforTolernce)= Oxidize_mz1(IndexTable);
+     IndexTabforTolernce=IndexTabforTolernce+1;
 
 end
-j=1
-tol= 1
-for i= 1:length(Unoxidize_mz1)
-    Unoxidize_mz(j)= str2double(Unoxidize_mz1(i))+tol
-    j=j+1
-     Unoxidize_mz(j)=  str2double(Unoxidize_mz1(i))-tol
-     j=j+1
-     Unoxidize_mz(j)= Unoxidize_mz1(i)
-     j=j+1
+IndexTabforTolernce=1;
+tol= 1;
+for IndexTable= 1:length(Unoxidize_mz1)
+    Unoxidize_mz(IndexTabforTolernce)= str2double(Unoxidize_mz1(IndexTable))+tol;
+    IndexTabforTolernce=IndexTabforTolernce+1;
+     Unoxidize_mz(IndexTabforTolernce)=  str2double(Unoxidize_mz1(IndexTable))-tol;
+     IndexTabforTolernce=IndexTabforTolernce+1;
+     Unoxidize_mz(IndexTabforTolernce)= Unoxidize_mz1(IndexTable)
+     IndexTabforTolernce=IndexTabforTolernce+1;
 
 end
 

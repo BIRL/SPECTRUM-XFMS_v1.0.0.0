@@ -7,17 +7,25 @@
 %                                (safee.ullah@gmail.com)                               %
 %                            Last Modified on: 26-July-2022                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Picking up reside names from Row 1 in the input file
-function [Index_var, colname] =  NumberOfColumns(file)
-%Fine cells that are empty
-Index_var=find( cellfun( @isempty, file(1,:) ) ==0);
-%Storage variable for non-empty column names
-colname=string({ });
-%For all columns in the first row that are not empty
-for i=1: length(Index_var)
-    %Read data from file
-    ColumnInfo= file(1,Index_var(i));
-    %Store column name
-    colname(1,Index_var(i))=ColumnInfo;
+function [AAstartId_U,AAendId_U]=UnoxidizeMZCase(Unoxi_index, ind, Oxi_index,file1,Oxidize_mz)
+%fetches the start and end Id of unoxidized mz block
+IDx=1;
+CounterID=1;
+for   j =1:length(Unoxi_index)
+    for i=1:length(ind)
+        if ind(i)==Unoxi_index(j)
+            AAstartId_U(IDx)=Unoxi_index(j);
+            CounterID=AAstartId_U(IDx);
+            while ~contains(file1( CounterID,2),string(Oxidize_mz)) && CounterID <= Unoxi_index(j) +1
+                counter= CounterID;
+                AAendId_U(IDx)=counter;
+                CounterID=CounterID+1;
+                if  file1( CounterID,:) == ""
+                    break
+                end
+            end
+            IDx=IDx+1;
+        end
+    end
 end
-end
+

@@ -8,30 +8,29 @@
 %                            Last Modified on: 26-July-2022                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This function generate blocks of data according to the dosage Values
-function [row_ind, row_end] =  XRayDosageDataBlockIndices(file)
+% This function is only used in case if two peptides have same or
+% overlapping headers.
+% This will generate index of blocks of data of File One in case of same or
+% overlapping header.
+function [row_ind1, row_end1] =  XRayDosageDataBlockIndicesCaseOne(FileMat)
 %Get the start indices
-row_ind = find(cellfun('length',regexp(string(file),'.x')) == 1);
-row_end = [];
-%change the string file to double
-file = str2double(file);
-FileTotalRows=size(file);
+row_ind1 = find(cellfun('length',regexp(string(FileMat),'.x')) == 1);
+row_end1 = [];
+%cahnge the string file to double
+FileMat = str2double(FileMat);
+FileTotalRows=size(FileMat);
 FileTotalRows=FileTotalRows(1);
 %Get the end indices
-for i = 1: size(row_ind,1)
+for i = 1: size(row_ind1,1)
     %start index is equal to the row value at position i
-    startIdx = row_ind(i);
-    if i == size(row_ind,1)
+    startIdx = row_ind1(i);
+    if i == size(row_ind1,1)
                   endIdx = FileTotalRows;
-        %end
+   
     else
         % end index is defined as the value at i+1 in row_ind
-        endIdx = row_ind(i+1)-1; 
+        endIdx = row_ind1(i+1)-1; 
     end
-    RowData = file(endIdx-1,:);
-    while isnan(RowData(:,:))
-        % assigning end id as the endIdx - 1
-        endIdx = endIdx - 1;  
-        RowData = file(endIdx,:);
-    end
-    row_end = [row_end; endIdx];
+    
+    row_end1 = [row_end1; endIdx];
 end
