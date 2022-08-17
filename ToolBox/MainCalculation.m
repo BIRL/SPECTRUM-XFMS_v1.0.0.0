@@ -1358,4 +1358,4 @@ FinalTableOutput = TableMerge(:, indx_pos);
 writetable(FinalTableOutput,'PF_SASA_tab.xls','Sheet',1);
 cd ..
 % step 19: replace the values of b-factor in pdb file by log PF
-[PDBModel]= EditPDB(FinalTableOutput,PDBFile)
+EditPDB(FinalTableOutput,PDBFile)

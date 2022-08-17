@@ -7,7 +7,7 @@
 %                                (safee.ullah@gmail.com)                               %
 %                           Last Modified on: 17-August-2022                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [PDBModel]= EditPDB(FinalTableOutput,PDBFile)
+function EditPDB(FinalTableOutput,PDBFile)
 %This function reads the pdb file and edit it by replacing the temp factor
 %values by log(PF) in Chai n A of PDB file 
 % pdb File
