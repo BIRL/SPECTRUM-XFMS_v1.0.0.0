@@ -5,7 +5,7 @@
 %           Lahore University of Management Sciences Lahore (LUMS), Pakistan.          %
 %                           (http://biolabs.lums.edu.pk/BIRL)                          %
 %                                (safee.ullah@gmail.com)                               %
-%                            Last Modified on: 26-July-2022                            %
+%                           Last Modified on: 17-August-2022                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function FileMerge()
 % This function reads the intermediate files and merge them on basis of the same header
@@ -168,7 +168,7 @@ for RowIndexMergeFile= 2:3: length(File)
             % if Header is same
             if    any (logicalArray(:),1)
                 % find  the index of blocks of 2 files
-                [row_ind1, row_end1] = XRayDosageDataBlockIndicescaseOne(FileMat);
+                [row_ind1, row_end1] = XRayDosageDataBlockIndicesCaseOne(FileMat);
                 [row_ind2, row_end2] = XRayDosageDataBlockIndicesCaseTwo(FileMat2);
 
                 for pos=1:length(row_ind1)

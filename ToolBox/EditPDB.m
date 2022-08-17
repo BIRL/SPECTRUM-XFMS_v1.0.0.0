@@ -5,7 +5,7 @@
 %           Lahore University of Management Sciences Lahore (LUMS), Pakistan.          %
 %                           (http://biolabs.lums.edu.pk/BIRL)                          %
 %                                (safee.ullah@gmail.com)                               %
-%                            Last Modified on: 26-July-2022                            %
+%                           Last Modified on: 17-August-2022                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [PDBModel]= EditPDB(FinalTableOutput,PDBFile)
 %This function reads the pdb file and edit it by replacing the temp factor
@@ -24,8 +24,13 @@ for index= 1: length(Pfile.Model.HeterogenAtom)
     Pfile.Model.HeterogenAtom(index).tempFactor= '';
 end
 %%%%% find the position of alpha carbon
-pos=find(strcmp({Pfile.Model.Atom(:).AtomName},'CA')& strcmp({Pfile.Model.Atom(:).chainID},'A'));
-pos2=find(strcmp({Pfile.Model.HeterogenAtom(:).AtomName},'CA')& strcmp({Pfile.Model.HeterogenAtom(:).chainID},'A'));
+if(PDBFile.Model.Atom(1).chainID == 'A')
+    pos=find(strcmp({Pfile.Model.Atom(:).AtomName},'CA')& strcmp({Pfile.Model.Atom(:).chainID},'A'));
+    pos2=find(strcmp({Pfile.Model.HeterogenAtom(:).AtomName},'CA')& strcmp({Pfile.Model.HeterogenAtom(:).chainID},'A'));
+elseif (PDBFile.Model.Atom(1).chainID == 'B')
+        pos=find(strcmp({Pfile.Model.Atom(:).AtomName},'CA')& strcmp({Pfile.Model.Atom(:).chainID},'B'));
+        pos2=find(strcmp({Pfile.Model.HeterogenAtom(:).AtomName},'CA')& strcmp({Pfile.Model.HeterogenAtom(:).chainID},'B'));
+end
 
 % loop to replace the temp values by the PF value
 for ind = 1: length(pos)

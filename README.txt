@@ -1,7 +1,7 @@
 # SPECTRUM-XFMS: A MATLAB Toolbox for analysing XFMS data
 
-This toolbox is built on Windows platform (Windows 10 & 11) using MATLAB 2021b along with MATLAB Bioinformatics and Matlab Curve Fitting
-Toolbox for functioning.
+This toolbox is built on Windows platform (Windows 10 & 11) using MATLAB 2021b along with MATLAB Bioinformatics, Matlab Curve Fitting
+Toolbox, and Image Processing Toolbox for fully functioning the toolbox.
  
 
 How to Use this Tool

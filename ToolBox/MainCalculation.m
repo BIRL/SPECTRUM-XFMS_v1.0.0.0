@@ -27,7 +27,7 @@ function MainCalculation()
 % Step1 : Load the Mascot , masshunter, SASA , Protein fasta and pdb File
 % Get the directory from user and read the Mascot file
 InputDir = uigetdir(pwd,'Select the Input folder' );
-MascotDir = uigetfile({'*xls;*.fasta;*.xlsx'},'Select a Mascot File' );
+MascotDir = uigetfile({'*.xls;*.xlsx'},'Select a Mascot File' );
 dir_mascot= char(strcat(InputDir,strcat('\',MascotDir)));
 
 %Reading mascot file
@@ -36,7 +36,7 @@ mascotfile = string(mascotfile);
 
 %%%%%% Reading the FASTA file
 %select the fasta file
-FASTADir = uigetfile({'*xls;*.fasta;*.xlsx'},'Select a FASTA File' );
+FASTADir = uigetfile({'*.fasta'},'Select a FASTA File' );
 dir_fasta= char(strcat(InputDir,strcat('\',FASTADir)));
 % Read fasta file and select output directory
 wholeSeq=fastaread(dir_fasta);
@@ -45,16 +45,17 @@ wholeSeq=wholeSeq.Sequence;
 %%%%% Creating List of mz values to bs used for MassHunter
 %MassToChargeRatioList(wholeSeq);
 %%%%%%%%%%%%%%% Reading SASA file
-SASADir = uigetfile({'*xls;*.fasta;*.xlsx'},'Select a SASA File' );
+SASADir = uigetfile({'*.xls;*.xlsx'},'Select a SASA File' );
 dir_SASA= char(strcat(InputDir,strcat('\',SASADir)));
 FileSASA=readtable(dir_SASA);
 FileSASA = table2cell(FileSASA);
 %%%%%%%%%%%%%%%%%%%%% Read PDB File
-PDBDir=uigetfile({'*pdb;*.fasta;*.xlsx'},'Select a PDB File' );
+PDBDir=uigetfile({'*.pdb'},'Select a PDB File' );
 dir_PDB= char(strcat(InputDir,strcat('\',PDBDir)));
 PDBFile = pdbread(dir_PDB);
 %%%%%%%%%%%%%%%%%% Reading MassHunter  files
-ProjectData = uigetdir(pwd,'Select a folder which contains MassHunter Data files' );
+ProjectData = uigetdir(pwd,'Select Mass Hunter Data Folder' );
+
 
 files = dir(ProjectData);
 
@@ -1325,7 +1326,7 @@ set(gcf,'Visible','off');
 cd ..
 plot(Final_Linear_fit);
 hold on
-xlim([0 inf]);Result
+xlim([0 inf]);
 plot(xaxis ,yaxis,'c.','MarkerSize',15);
 plot(xaxis,PredictionInterval,'m--');
 hold off
