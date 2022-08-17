@@ -1,18 +1,21 @@
 # SPECTRUM-XFMS: A MATLAB Toolbox for analysing XFMS data
 
-
-This toolbox is built on Windows 11 platform by using MATLAB 2021b along with MATLAB Bioinformatics and Matlab Curve Fitting
+This toolbox is built on Windows platform (Windows 10 & 11) using MATLAB 2021b along with MATLAB Bioinformatics and Matlab Curve Fitting
 Toolbox for functioning.
  
 
-""INPUT""
+How to Use this Tool
 
-1. Run the MainCalculation.m file in MATLAB.
-2. Select the Input folder.
-3. Select the MASCOT, protein FASTA, SASA and pdb file.
-4. Select the folder containing MassHunter data files.
+""INPUT""
+1. Go to the "Toolbox" folder and run the "MainCalculation.m" file in MATLAB.
+2. Select any folder from "SampleData" folder as an Input.
+3. Select the below files from respective folder (Step 2)
+	i). *_Fasta_File.fasta
+	ii). *_File.pdb
+	iii). *_MASCOT_File.xlsx
+	iv). *_SASA_File.xlsx
+4. Select the folder (*_MassHunter_Files) from Step 2 containing MassHunter data files.
 
 
 ""Output""
-
-Results will be saved in the "Result" folder.
+Results will be automatically saved into the "Result" folder and its location inside the Toolbox folder.
